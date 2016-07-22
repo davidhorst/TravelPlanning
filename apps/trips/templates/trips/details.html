@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block title %} Dashboard 2.0 {% endblock %}
+{% block body %}
+
+<h1>{{ object.location }}</h1>
+<p>planned by: {{ object.user.first_name }}</p>
+<p>description: {{ object.description }}</p>
+<p>start date: {{ object.start_date }}</p>
+<p>end date: {{ object.start_date }}</p>
+
+
+<ul>
+{% for travler in travelers %}
+<li>{{ travler.Traveler_id }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% block title %} Dashboard 2.0 {% endblock %}
+{% block body %}
+
+<h3> Your Trip Schedules </h3>
+
+	<table class="table table-striped col-sm-12">
+		<thead>
+			<th>Destination</th>
+			<th>Trip Start Date</th>
+			<th>Trip End Date</th>
+			<th>Plan</th>
+		</thead>
+		<tbody>
+		{% for trip in my_trips %}
+			<tr>
+				<td><a href="destinations/{{ trip.id }}">{{ trip.location }}</a></td>
+				<td>{{ trip.start_date }}</td>
+				<td>{{ trip.end_date }}</td>
+				<td>{{ trip.description }}</td>
+			</tr>
+
+			{% empty %}
+			<p> no trips here</p>
+			{% endfor %}
+		</tbody>
+	</table>
+
+<h3> Other Users' Travel Plans </h3>
+<table class="table table-striped col-sm-12">
+	<thead>
+		<th>Owner</th>
+		<th>Destination</th>
+		<th>Trip Start Date</th>
+		<th>Trip End Date</th>
+		<th>Plan</th>
+		<th>action</th>
+	</thead>
+	<tbody>
+	{% for trip in other_trips %}
+		<tr>
+			<td>{{ trip.user.username }}</td>
+			<td><a href="destinations/{{ trip.id }}">{{ trip.location }}</a></td>
+			<td>{{ trip.start_date }}</td>
+			<td>{{ trip.end_date }}</td>
+			<td>{{ trip.description }}</td>
+			<td><a href="join/{{ trip.id }}">Join</a></td>
+		</tr>
+
+		{% empty %}
+		<p> no trips here</p>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<a href="/travels/add" class="btn btn-primary">Add a Travel Plan</a>
+{% endblock %}
